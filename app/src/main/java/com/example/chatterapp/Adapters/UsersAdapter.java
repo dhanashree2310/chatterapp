@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHolder> {
 
@@ -56,9 +57,11 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.exists()){
                         String lastMsg = snapshot.child("lastMsg").getValue(String.class);
-                        //long time = snapshot.child("lastMsgTime").getValue(Long.class);
+                        long time = snapshot.child("lastMsgTime").getValue(long.class);
+
 
                         holder.binding.lastMsg.setText(lastMsg);
+                        holder.binding.msgTime.setText(new Date(time).toString());
 
                      }else{
                             holder.binding.lastMsg.setText("Tap to chat");

@@ -102,7 +102,8 @@ public class SetupProfileActivity extends AppCompatActivity {
 
 
                                 });
-                            } else{
+                            }
+                            else{
                                 String uid = auth.getUid();
                                 String phone = auth.getCurrentUser().getPhoneNumber();
 
@@ -127,6 +128,28 @@ public class SetupProfileActivity extends AppCompatActivity {
 
                         }
                     });
+                }
+                else{
+                    String uid = auth.getUid();
+                    String phone = auth.getCurrentUser().getPhoneNumber();
+
+
+                    User user = new User(uid, name, phone, "No Image");
+                    database.getReference()
+                            .child("users")
+                            .child(uid)
+                            .setValue(user)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    dialog.dismiss();
+
+                                    Intent intent = new Intent(SetupProfileActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+
+                                }
+                            });
                 }
             }
         });

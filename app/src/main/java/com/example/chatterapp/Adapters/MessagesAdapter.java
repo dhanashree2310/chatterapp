@@ -2,6 +2,7 @@ package com.example.chatterapp.Adapters;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -38,8 +39,8 @@ public class MessagesAdapter extends RecyclerView.Adapter{
     public MessagesAdapter(Context context, ArrayList<Message> messages, String senderRoom, String receiverRoom){
         this.context = context;
         this.messages = messages;
-        this.senderRoom = this.senderRoom;
-        this.receiverRoom = this.receiverRoom;
+        this.senderRoom = senderRoom;
+        this.receiverRoom = receiverRoom;
 
     }
 
@@ -111,6 +112,8 @@ public class MessagesAdapter extends RecyclerView.Adapter{
                     .child(receiverRoom)
                     .child("messages")
                     .child(message.getMessageId()).setValue(message);
+
+            Log.d("message",message+"");
 
             return true; // true is closing popup, false is requesting a new selection
         });
