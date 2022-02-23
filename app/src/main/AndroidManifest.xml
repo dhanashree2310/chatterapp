@@ -11,8 +11,12 @@
         android:theme="@style/Theme.ChatterApp"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Activities.ChatActivity"
+            android:name=".Activities.GroupChatActivity"
             android:exported="false" />
+        <activity
+            android:name=".Activities.ChatActivity"
+            android:exported="false"
+            android:theme="@style/Theme.ChatterApp.NoActionBar" />
         <activity
             android:name=".Activities.SetupProfileActivity"
             android:exported="false" />
@@ -31,12 +35,24 @@
         </activity>
         <activity
             android:name=".Activities.MainActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
+See README(https://goo.gl/l4GJaQ) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_send" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/purple" />
+
     </application>
 
 </manifest>

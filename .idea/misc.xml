@@ -8,20 +8,26 @@
         <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/drawable/circle_purple.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/drawable/ic_chats.xml" value="0.1" />
         <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/drawable/ic_search.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/drawable/ic_send.xml" value="0.1" />
+        <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/drawable/ic_video.xml" value="0.1" />
         <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/drawable/recieve_drawable.xml" value="0.1" />
         <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/drawable/send_drawable.xml" value="0.1" />
         <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/drawable/textbox_outline.xml" value="0.26614583333333336" />
-        <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/layout/activity_chat.xml" value="0.2" />
-        <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/layout/activity_chat.xml" value="0.4" />
+        <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/layout/activity_group_chat.xml" value="0.25" />
+        <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/layout/activity_otpactivity.xml" value="0.25" />
         <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/layout/activity_phone_number.xml" value="0.2" />
         <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/layout/activity_setup_profile.xml" value="0.25" />
         <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/layout/demo_layout.xml" value="0.21920289855072464" />
         <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/layout/demo_status.xml" value="0.21920289855072464" />
-        <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/layout/item_recieve.xml" value="0.22871376811594202" />
+        <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/layout/item_recieve.xml" value="0.536" />
+        <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/layout/item_recieve_group.xml" value="0.25" />
         <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/layout/item_send.xml" value="0.4" />
+        <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/layout/item_sent_group.xml" value="0.25" />
         <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/layout/item_status.xml" value="0.264" />
         <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/layout/row_conversation.xml" value="0.4" />
+        <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/menu/chat_menu.xml" value="0.12708333333333333" />
         <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/menu/menu.xml" value="0.25" />
         <entry key="..\:/Users/Dhanashree/AndroidStudioProjects/ChatterApp/app/src/main/res/menu/topmenu.xml" value="0.25" />
       </map>

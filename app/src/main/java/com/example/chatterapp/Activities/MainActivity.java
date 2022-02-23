@@ -220,9 +220,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        String currentId=FirebaseAuth.getInstance().getUid(); //get the id of the user who has logged in
+        database.getReference().child("presence").child(currentId).setValue("Online");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        String currentId=FirebaseAuth.getInstance().getUid(); //get the id of the user who has logged off
+        database.getReference().child("presence").child(currentId).setValue("Offline");
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
 //Top menu Search
+            case R.id.group:
+                startActivity(new Intent(MainActivity.this, GroupChatActivity.class));
+                break;
             case R.id.search:
                 Toast.makeText(this, "Search clicked.", Toast.LENGTH_SHORT).show();
                 break;
