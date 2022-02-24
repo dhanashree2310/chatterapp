@@ -21,6 +21,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.Date;
+import java.util.HashMap;
+
 public class SetupProfileActivity extends AppCompatActivity {
     ActivitySetupProfileBinding binding;
     FirebaseAuth auth;
@@ -103,28 +106,7 @@ public class SetupProfileActivity extends AppCompatActivity {
 
                                 });
                             }
-                            else{
-                                String uid = auth.getUid();
-                                String phone = auth.getCurrentUser().getPhoneNumber();
 
-
-                                User user = new User(uid, name, phone, "No Image");
-                                database.getReference()
-                                        .child("users")
-                                        .child(uid)
-                                        .setValue(user)
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void unused) {
-                                                dialog.dismiss();
-
-                                                Intent intent = new Intent(SetupProfileActivity.this, MainActivity.class);
-                                                startActivity(intent);
-                                                finish();
-
-                                            }
-                                        });
-                            }
 
                         }
                     });
@@ -160,8 +142,35 @@ public class SetupProfileActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(data!=null){
             if(data.getData()!=null){
+                Uri uri = data.getData(); // filepath
+                FirebaseStorage storage = FirebaseStorage.getInstance();
+                long time = new Date().getTime();
+                StorageReference reference = storage.getReference().child("Profiles").child(time+"");
+                reference.putFile(uri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        if(task.isSuccessful()) {
+                            reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    String filePath = uri.toString();
+                                    HashMap<String, Object> obj = new HashMap<>();
+                                    obj.put("image", filePath);
+                                    database.getReference().child("users")
+                                            .child(FirebaseAuth.getInstance().getUid())
+                                            .updateChildren(obj).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    }
+                });
                 binding.imageView.setImageURI(data.getData());
-                selectedImage=data.getData();
+                selectedImage = data.getData();
             }
         }
 

@@ -107,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
                         users.add(user);
                 }
                 binding.recyclerView.hideShimmerAdapter();
-
                 usersAdapter.notifyDataSetChanged();
 
             }
@@ -135,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         status.setStatuses(statuses);
-
                         userStatuses.add(status);
                     }
                     binding.statusList.hideShimmerAdapter();

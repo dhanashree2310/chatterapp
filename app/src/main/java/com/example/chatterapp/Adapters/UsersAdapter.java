@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -59,7 +60,8 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
                         String lastMsg = snapshot.child("lastMsg").getValue(String.class);
                         long time = snapshot.child("lastMsgTime").getValue(long.class);
 
-
+                      //SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a");
+                       // holder.binding.msgTime.setText(dateFormat.format(new Date(time).toString()));
                         holder.binding.lastMsg.setText(lastMsg);
                         holder.binding.msgTime.setText(new Date(time).toString());
 
@@ -78,6 +80,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
         Glide.with(context).load(user.getProfileImage())
                 .placeholder(R.drawable.avatar)
                 .into(holder.binding.profile);
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
