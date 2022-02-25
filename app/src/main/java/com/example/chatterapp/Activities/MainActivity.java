@@ -8,12 +8,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.example.chatterapp.Adapters.TopStatusAdapter;
 import com.example.chatterapp.Models.Status;
 import com.example.chatterapp.Models.UserStatus;
@@ -30,7 +36,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.annotations.NotNull;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -56,6 +65,57 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        FirebaseRemoteConfig mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+                .setMinimumFetchIntervalInSeconds(0)
+                .build();
+        mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
+
+        mFirebaseRemoteConfig.fetchAndActivate().addOnSuccessListener(new OnSuccessListener<Boolean>() {
+            @Override
+            public void onSuccess(Boolean aBoolean) {
+                /*for background*/
+                String backgroundImage = mFirebaseRemoteConfig.getString("backgroundImage");
+                Glide.with(MainActivity.this)
+                        .load(backgroundImage)
+                        .into(binding.backgroundImage);
+
+
+
+                /*Toolbar color*/
+                String toolbarColor = mFirebaseRemoteConfig.getString("toolbarColor");
+                String toolbarImage = mFirebaseRemoteConfig.getString("toolbarImage");
+                boolean istoolBarImageEnabled=mFirebaseRemoteConfig.getBoolean("toolBarImageEnabled");
+
+
+
+               // Toast.makeText(MainActivity.this,toolbarColor,Toast.LENGTH_SHORT).show();
+
+                if(istoolBarImageEnabled) {
+                    Glide.with(MainActivity.this)
+                            .load(toolbarImage)
+                            .into(new CustomTarget<Drawable>() {
+                                @Override
+                                public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                                    getSupportActionBar()
+                                            .setBackgroundDrawable(resource);
+                                }
+
+                                @Override
+                                public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                                }
+                            });
+                }else{
+                    getSupportActionBar()
+                            .setBackgroundDrawable
+                                    (new ColorDrawable(Color.parseColor(toolbarColor)));
+
+                }
+
+            }
+        });
 
         database= FirebaseDatabase.getInstance();
 

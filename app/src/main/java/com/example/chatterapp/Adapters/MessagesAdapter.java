@@ -154,7 +154,6 @@ public class MessagesAdapter extends RecyclerView.Adapter{
             viewHolder.binding.message.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
-
                     boolean isFeelingsEnabled = remoteConfig.getBoolean("isFeelingsEnabled");
                     if(isFeelingsEnabled)
                         popup.onTouch(v, event);
@@ -262,7 +261,12 @@ public class MessagesAdapter extends RecyclerView.Adapter{
             viewHolder.binding.message.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
-                    popup.onTouch(v, event);
+
+                    boolean isFeelingsEnabled = remoteConfig.getBoolean("isFeelingsEnabled");
+                    if(isFeelingsEnabled)
+                        popup.onTouch(v, event);
+                    else
+                        Toast.makeText(context, "This feature is disabled temporarily.", Toast.LENGTH_SHORT).show();
                     return false;
                 }
             });
