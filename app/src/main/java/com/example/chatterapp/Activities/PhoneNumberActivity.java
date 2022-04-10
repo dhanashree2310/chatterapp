@@ -1,10 +1,13 @@
 package com.example.chatterapp.Activities;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
+
 
 import com.example.chatterapp.databinding.ActivityPhoneNumberBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,7 +24,7 @@ public class PhoneNumberActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        if(auth.getCurrentUser() != null) {
+        if (auth.getCurrentUser() != null) {
             Intent intent = new Intent(PhoneNumberActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
@@ -35,9 +38,17 @@ public class PhoneNumberActivity extends AppCompatActivity {
         binding.continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PhoneNumberActivity.this, OTPActivity.class); //to go from phone to otp
-                intent.putExtra("phoneNumber", binding.phoneBox.getText().toString()); //extra for sending phonenummber for phone to otp activity
-                startActivity(intent);
+                if (!binding.phoneBox.getText().toString().trim().isEmpty()) {
+                    if (binding.phoneBox.getText().toString().trim().length() == 10) {
+                        Intent intent = new Intent(PhoneNumberActivity.this, OTPActivity.class); //to go from phone to otp
+                        intent.putExtra("phoneNumber", binding.phoneBox.getText().toString()); //extra for sending phonenummber for phone to otp activity
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(PhoneNumberActivity.this, "Please enter correct number", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(PhoneNumberActivity.this, "Enter phone number", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

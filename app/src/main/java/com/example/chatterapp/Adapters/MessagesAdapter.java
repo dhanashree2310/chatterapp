@@ -81,6 +81,7 @@ public class MessagesAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Message message=messages.get(position);
+
         int reactions[]=new int[]{
                 R.drawable.ic_fb_like,
                 R.drawable.ic_fb_love,
@@ -100,6 +101,7 @@ public class MessagesAdapter extends RecyclerView.Adapter{
 
             if(holder.getClass()==SentViewHolder.class){
                 SentViewHolder viewHolder=(SentViewHolder) holder;
+                viewHolder.itemView.setLongClickable(true);
                 viewHolder.binding.feeling.setImageResource(reactions[pos]);
                 viewHolder.binding.feeling.setVisibility(View.VISIBLE);
             }
@@ -132,7 +134,7 @@ public class MessagesAdapter extends RecyclerView.Adapter{
         if(holder.getClass()==SentViewHolder.class){
             SentViewHolder viewHolder=(SentViewHolder)holder;
             //TO display acttual image instead of string photo in sender
-            if(message.getMessage().equals("photo")){
+            if(message.getMessage().equals("photo") && !message.getImageUrl().isEmpty()){
                 viewHolder.binding.image.setVisibility(View.VISIBLE);
                 viewHolder.binding.message.setVisibility(View.GONE);
                 Glide.with(context)
@@ -164,13 +166,13 @@ public class MessagesAdapter extends RecyclerView.Adapter{
             });
 
 
-            viewHolder.binding.image.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                        popup.onTouch(v, event);
-                    return false;
-                }
-            });
+//            viewHolder.binding.image.setOnTouchListener(new View.OnTouchListener() {
+//                @Override
+//                public boolean onTouch(View v, MotionEvent event) {
+//                        popup.onTouch(v, event);
+//                    return false;
+//                }
+//            });
 
             viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -257,7 +259,6 @@ public class MessagesAdapter extends RecyclerView.Adapter{
                 viewHolder.binding.feeling.setVisibility(View.GONE);
             }
 
-
             viewHolder.binding.message.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
@@ -271,13 +272,13 @@ public class MessagesAdapter extends RecyclerView.Adapter{
                 }
             });
 
-            viewHolder.binding.image.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    popup.onTouch(v, event);
-                    return false;
-                }
-            });
+//            viewHolder.binding.image.setOnTouchListener(new View.OnTouchListener() {
+//                @Override
+//                public boolean onTouch(View v, MotionEvent event) {
+//                    popup.onTouch(v, event);
+//                    return false;
+//                }
+//            });
 
             viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -289,25 +290,27 @@ public class MessagesAdapter extends RecyclerView.Adapter{
                             .setView(binding.getRoot())
                             .create();
 
-                    binding.everyone.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            message.setMessage("This message is removed.");
-                            message.setFeeling(-1);
-                            FirebaseDatabase.getInstance().getReference()
-                                    .child("chats")
-                                    .child(senderRoom)
-                                    .child("messages")
-                                    .child(message.getMessageId()).setValue(message);
+                    binding.everyone.setVisibility(v.INVISIBLE);  //reciever cannot delete the msg msg send by sender as everyone
 
-                            FirebaseDatabase.getInstance().getReference()
-                                    .child("chats")
-                                    .child(receiverRoom)
-                                    .child("messages")
-                                    .child(message.getMessageId()).setValue(message);
-                            dialog.dismiss();
-                        }
-                    });
+//                    binding.everyone.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            message.setMessage("This message is removed.");
+//                            message.setFeeling(-1);
+//                            FirebaseDatabase.getInstance().getReference()
+//                                    .child("chats")
+//                                    .child(senderRoom)
+//                                    .child("messages")
+//                                    .child(message.getMessageId()).setValue(message);
+//
+//                            FirebaseDatabase.getInstance().getReference()
+//                                    .child("chats")
+//                                    .child(receiverRoom)
+//                                    .child("messages")
+//                                    .child(message.getMessageId()).setValue(message);
+//                            dialog.dismiss();
+//                        }
+//                    });
 
                     binding.delete.setOnClickListener(new View.OnClickListener() {
                         @Override

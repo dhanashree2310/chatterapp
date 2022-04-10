@@ -36,7 +36,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.annotations.NotNull;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
@@ -118,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         database= FirebaseDatabase.getInstance();
-
         FirebaseMessaging.getInstance()
                 .getToken()
                 .addOnSuccessListener(new OnSuccessListener<String>() {
@@ -130,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                                 .child("users")
                                 .child(FirebaseAuth.getInstance().getUid())
                                 .updateChildren(map);
-                        Toast.makeText(MainActivity.this,token,Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(MainActivity.this,token,Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -316,11 +314,18 @@ public class MainActivity extends AppCompatActivity {
             case R.id.group:
                 startActivity(new Intent(MainActivity.this, GroupChatActivity.class));
                 break;
-            case R.id.search:
-                Toast.makeText(this, "Search clicked.", Toast.LENGTH_SHORT).show();
-                break;
+
             case R.id.settings:
-                Toast.makeText(this, "Settings Clicked.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, UpdateProfileActivity.class);
+                startActivity(intent);
+
+                break;
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                Intent intent1 = new Intent(MainActivity.this, SetupProfileActivity.class);
+                startActivity(intent1);
+               // startActivity(new Intent(MainActivity.this, PhoneNumberActivity.class));
+               // Toast.makeText(this, "Logout.", Toast.LENGTH_SHORT).show();
                 break;
         }
         return super.onOptionsItemSelected(item);

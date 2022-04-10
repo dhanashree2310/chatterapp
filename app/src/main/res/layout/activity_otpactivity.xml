@@ -46,6 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/phoneLbl" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
         android:layout_width="369dp"
         android:layout_height="139dp"
         android:layout_marginEnd="8dp"
@@ -62,16 +63,17 @@
             android:layout_height="133dp"
             android:layout_margin="10dp"
             android:orientation="vertical">
-//taken from dependency for otp pin view
+            //taken from dependency for otp pin view
+
             <com.mukesh.OtpView
                 android:id="@+id/otp_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
+                android:focusableInTouchMode="true"
                 android:inputType="number"
                 android:itemBackground="@color/grey"
-                android:focusableInTouchMode="true"
                 android:textColor="@android:color/black"
                 app:OtpItemCount="6"
                 app:OtpLineColor="@color/purple"
@@ -85,7 +87,43 @@
                 android:backgroundTint="#673AB7"
                 android:text="Continue" />
 
+
         </LinearLayout>
+
+
     </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="355dp"
+        android:layout_height="49dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2"
+        app:layout_constraintVertical_bias="0.04">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="82dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_weight="1"
+            android:text="Didn't recieve OTP?" />
+
+        <TextView
+            android:id="@+id/textresendotp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Resend OTP again"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

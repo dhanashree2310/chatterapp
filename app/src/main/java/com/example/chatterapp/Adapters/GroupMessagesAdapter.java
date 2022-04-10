@@ -170,24 +170,24 @@ public class GroupMessagesAdapter extends RecyclerView.Adapter{
                     boolean isFeelingsEnabled = remoteConfig.getBoolean("isFeelingsEnabled");
                     if(isFeelingsEnabled)
                         popup.onTouch(v, event);
-                    else
-                        Toast.makeText(context, "This feature is disabled temporarily.", Toast.LENGTH_SHORT).show();
+                    else {}
+                        //Toast.makeText(context, "This feature is disabled temporarily.", Toast.LENGTH_SHORT).show();
                     return false;
                 }
             });
 
 
-            viewHolder.binding.image.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    boolean isFeelingsEnabled = remoteConfig.getBoolean("isFeelingsEnabled");
-                    if (isFeelingsEnabled)
-                        popup.onTouch(v, event);
-                    else
-                        Toast.makeText(context, "This feature is disabled temporarily.", Toast.LENGTH_SHORT).show();
-                    return false;
-                }
-            });
+//            viewHolder.binding.image.setOnTouchListener(new View.OnTouchListener() {
+//                @Override
+//                public boolean onTouch(View v, MotionEvent event) {
+//                    boolean isFeelingsEnabled = remoteConfig.getBoolean("isFeelingsEnabled");
+//                    if (isFeelingsEnabled)
+//                        popup.onTouch(v, event);
+//                    else
+//                        Toast.makeText(context, "This feature is disabled temporarily.", Toast.LENGTH_SHORT).show();
+//                    return false;
+//                }
+//            });
 
             viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -279,18 +279,22 @@ public class GroupMessagesAdapter extends RecyclerView.Adapter{
             viewHolder.binding.message.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
-                    popup.onTouch(v, event);
+                    boolean isFeelingsEnabled = remoteConfig.getBoolean("isFeelingsEnabled");
+                    if(isFeelingsEnabled)
+                        popup.onTouch(v, event);
+                    else {}
+                        //Toast.makeText(context, "This feature is disabled temporarily.", Toast.LENGTH_SHORT).show();
                     return false;
                 }
             });
 
-            viewHolder.binding.image.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    popup.onTouch(v, event);
-                    return false;
-                }
-            });
+//            viewHolder.binding.image.setOnTouchListener(new View.OnTouchListener() {
+//                @Override
+//                public boolean onTouch(View v, MotionEvent event) {
+//                    popup.onTouch(v, event);
+//                    return false;
+//                }
+//            });
 
             viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override

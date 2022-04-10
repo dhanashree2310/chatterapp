@@ -72,17 +72,6 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="23dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="5dp"
-        android:tint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_option" />
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="0dp"
